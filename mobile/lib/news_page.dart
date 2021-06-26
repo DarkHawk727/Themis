@@ -120,6 +120,46 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
                         physics: NeverScrollableScrollPhysics(),
                         padding: EdgeInsets.only(left: 25, right: 25),
                         children: [
+                          Text('Bias', style: Theme.of(context).textTheme.subtitle1),
+                          Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Align(
+                                alignment: Alignment.center,
+                                child: Container(
+                                  width: width,
+                                  height: 8,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(25),
+                                    color: Colors.black,
+                                    gradient: LinearGradient(
+                                      begin: Alignment.centerLeft,
+                                      end: Alignment.centerRight,
+                                      colors: [
+                                        Colors.blueAccent,
+                                        Colors.redAccent,
+                                      ]
+                                    )
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(left: (width - 58) * 0.4),
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Container(
+                                    width: 8,
+                                    height: 25,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(25),
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                          Container(height: 8),
                           Text('Subjectivity', style: Theme.of(context).textTheme.subtitle1),
                           Stack(
                             alignment: Alignment.center,

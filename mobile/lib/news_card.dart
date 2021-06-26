@@ -26,6 +26,13 @@ class _NewsCardState extends State<NewsCard> {
               image: NetworkImage('https://smartcdn.prod.postmedia.digital/nationalpost/wp-content/uploads/2021/06/Anthony-Rota-1-33.png?quality=90&strip=all&w=564&type=webp'),
               fit: BoxFit.cover
             ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black12,
+                spreadRadius: 5,
+                blurRadius: 40
+              )
+            ]
           ),
           width: width - 55,
           child: Padding(
