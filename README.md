@@ -11,9 +11,9 @@ We wanted to lower the access barrier to news and make it more accessible and ea
 
 # 🛑 Challenges we ran into
 
-✅ Accomplishments that we're proud of
+# ✅ Accomplishments that we're proud of
 
-📖 What we learned
+# 📖 What we learned
 * Creating our own Flask Server to run the ML models
 * More APIs for flutter
 * Interfacing with BERT
