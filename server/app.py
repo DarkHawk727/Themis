@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, abort
 from transformers import pipeline
 from textblob import TextBlob
 import requests
@@ -16,6 +16,11 @@ def do():
     safe_query = body["query"].split(' ')
     safe_query = '+'.join(safe_query) 
     res = requests.get(f'https://newsdata.io/api/1/news?apikey=pub_42213970ad6b67a6efb40d24a9038c93875&q={safe_query}&language=en')
+
+    if res.json() == {}:
+        return {
+            "data": []
+        }
 
     text = "" 
     if not res.json()["results"][0]["content"]:
@@ -57,7 +62,7 @@ def todaysHeadlines():
 
        elif not result["content"]:
            text += result["description"]
-           
+
        elif not result["description"]:
            text += result["content"]
 
