@@ -10,6 +10,9 @@ We wanted to lower the access barrier to news and make it more accessible and ea
 *   [APINAMES]
 
 # 🛑 Challenges we ran into
+* Complex animations
+* Bottom sheet that contains the metrics
+* Finding a News API
 
 # ✅ Accomplishments that we're proud of
 
