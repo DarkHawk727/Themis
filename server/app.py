@@ -17,7 +17,7 @@ def do():
     safe_query = '+'.join(safe_query) 
     res = requests.get(f'https://newsdata.io/api/1/news?apikey=pub_42213970ad6b67a6efb40d24a9038c93875&q={safe_query}&language=en')
 
-    if res.json() == {}:
+    if res.json()["results"] == {}:
         return {
             "data": []
         }
