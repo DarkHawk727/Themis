@@ -8,7 +8,7 @@ class NewsPage extends StatefulWidget {
 }
 
 class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin{
-  double bottomSheetHeight = 120;
+  double bottomSheetHeight = 100;
   double bottomSheetMaxHeight = 750;
   Animation<double> animation;
   AnimationController controller;
@@ -74,7 +74,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
                 if(-v.velocity.pixelsPerSecond.dy > 0 || bottomSheetHeight > 600) {
                   animate(from: bottomSheetHeight, to: bottomSheetMaxHeight);
                 } else {
-                  animate(from: bottomSheetHeight, to: 120);
+                  animate(from: bottomSheetHeight, to: 100);
                 }
               },
               child: Container(
