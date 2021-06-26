@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'average_color.dart';
 
 class NewsPage extends StatefulWidget {
   const NewsPage({ Key key }) : super(key: key);
@@ -14,6 +15,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
   AnimationController controller;
   Tween<double> _tween;
   DragStatus dragStatus = DragStatus.endedDown;
+  Color imgavg = Colors.black;
 
   @override
   void initState() {
@@ -21,7 +23,13 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
     _tween = Tween<double>(begin: bottomSheetHeight, end: bottomSheetMaxHeight);
     animation = _tween.animate(controller)            
       ..addListener(() => setState(() => bottomSheetHeight = animation.value));     
+    setAvgColor();
     super.initState();
+  }
+
+  setAvgColor() async {
+    imgavg = await AvgColor.getAverageColor('https://smartcdn.prod.postmedia.digital/nationalpost/wp-content/uploads/2021/06/Anthony-Rota-1-33.png?quality=90&strip=all&w=564&type=webp');
+    setState(() {});
   }
 
   animate({double from, double to}) {
@@ -41,23 +49,26 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    double topMargin = MediaQuery.of(context).padding.top;
     return Scaffold(
       body: Stack(
         children: [
-          SafeArea(
-            child: Column(
-              children: [
-                Image.network('https://smartcdn.prod.postmedia.digital/nationalpost/wp-content/uploads/2021/06/Anthony-Rota-1-33.png?quality=90&strip=all&w=564&type=webp'),
-                Padding(
-                  padding: const EdgeInsets.only(left: 15, right: 15, top: 5),
-                  child: Text('Car crash in Beverly Hills', style: Theme.of(context).textTheme.headline2),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Text('OTTAWA – The Speaker of the House of Commons says he intends to ask the federal court to strike down the Trudeau government’s attempt to have a judge block parliamentarians from receiving documents regarding the firing of two scientists at Canada’s top laboratory.', style: Theme.of(context).textTheme.bodyText1),
-                ),
-              ],
-            ),
+          Column(
+            children: [
+              Container(
+                height: topMargin,
+                color: imgavg,
+              ),
+              Image.network('https://smartcdn.prod.postmedia.digital/nationalpost/wp-content/uploads/2021/06/Anthony-Rota-1-33.png?quality=90&strip=all&w=564&type=webp'),
+              Padding(
+                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+                child: Text('Car crash in Beverly Hills', style: Theme.of(context).textTheme.headline2),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Text('OTTAWA – The Speaker of the House of Commons says he intends to ask the federal court to strike down the Trudeau government’s attempt to have a judge block parliamentarians from receiving documents regarding the firing of two scientists at Canada’s top laboratory.', style: Theme.of(context).textTheme.bodyText1),
+              ),
+            ],
           ),
           Align(
             alignment: Alignment.bottomCenter,

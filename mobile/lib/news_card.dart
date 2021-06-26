@@ -14,7 +14,7 @@ class _NewsCardState extends State<NewsCard> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Padding(
-      padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+      padding: const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 10.0),
       child: GestureDetector(
         onTap: () {
           Navigator.push(context, MaterialPageRoute(builder: (_) => NewsPage()));

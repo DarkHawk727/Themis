@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        fontFamily: 'Gotham',
         textTheme: TextTheme(
           headline1: TextStyle(
             fontSize: 40,
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
           ),
           headline2: TextStyle(
             fontSize: 32,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w400,
             color: Colors.black,
           ),
           headline3: TextStyle(
@@ -35,6 +36,10 @@ class MyApp extends StatelessWidget {
           bodyText1: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ),
+          bodyText2: TextStyle(
+            fontWeight: FontWeight.w200,
             color: Colors.black,
           ),
         )
@@ -161,13 +166,6 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
               ],
             ),
           ),
-          // Align(
-          //   alignment: Alignment.topRight,
-          //   child: Padding(
-          //     padding: const EdgeInsets.only(top: 20, right: 15),
-          //     child: Icon(Icons.search_rounded, size: 40),
-          //   ),
-          // )
           SlideTransition(
             position: animation,
             child: Column(
@@ -189,19 +187,26 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                             color: Colors.grey
                           ),
                           child: TextField(
-                            style: Theme.of(context).textTheme.bodyText2.copyWith(fontSize: 16),
+                            style: Theme.of(context).textTheme.bodyText1.copyWith(fontSize: 16, color: Colors.white),
                             decoration: InputDecoration(
                               isDense: true,
-                              contentPadding: EdgeInsets.only(top: 5),
+                              contentPadding: EdgeInsets.only(top: 6),
                               border: InputBorder.none,
-                              hintText: 'Search'
+                              hintText: 'Search',
+                              //hintStyle: TextStyle(color: Colors.white)
                             ),
+                            onEditingComplete: () {
+                              FocusManager.instance.primaryFocus.unfocus();
+                            },
                           )
                         )
                       ),
                       MaterialButton(
                         padding: EdgeInsets.zero,
-                        onPressed: () => controller.reverse(),
+                        onPressed: () {
+                          FocusManager.instance.primaryFocus.unfocus();
+                          controller.reverse();
+                        },
                         child: Text('Cancel', style: TextStyle(color: Colors.blueAccent)),
                       )
                     ],
