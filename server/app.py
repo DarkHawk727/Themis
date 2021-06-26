@@ -50,9 +50,11 @@ def todaysHeadlines():
    for result in results:
        text = ""
        print(result)
-       if not result["content"]:
+       if not result["content"] and not result["description"]:
+           continue
+       elif not result["content"]:
            text += result["description"]
-       else:
+       elif not result["description"]:
            text += result["content"]
 
        if len(text) > 1024:
