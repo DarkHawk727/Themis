@@ -54,6 +54,9 @@ def todaysHeadlines():
        else:
            text += result["content"]
 
+       if len(text) > 1024:
+           text = text[:1024]
+
        summary = summarizer(result["description"], max_length=200, min_length=90, do_sample=False)
        blob = TextBlob(summary[0]["summary_text"])
        summaries.append({
