@@ -153,8 +153,8 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                 //Container(height: animation.value * height),
                 //News
                 Expanded(
-                  flex: 1,
                   child: PageView(
+                    clipBehavior: Clip.none,
                     scrollDirection: Axis.horizontal,
                     children: [
                       NewsCard(),
