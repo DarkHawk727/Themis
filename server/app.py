@@ -49,6 +49,7 @@ def todaysHeadlines():
 
    for result in results:
        text = ""
+       print(result)
        if not result["content"]:
            text += result["description"]
        else:
