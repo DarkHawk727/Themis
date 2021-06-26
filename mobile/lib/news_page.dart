@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'average_color.dart';
 
@@ -10,7 +12,7 @@ class NewsPage extends StatefulWidget {
 
 class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin{
   double bottomSheetHeight = 100;
-  double bottomSheetMaxHeight = 750;
+  double bottomSheetMaxHeight = 400;
   Animation<double> animation;
   AnimationController controller;
   Tween<double> _tween;
@@ -55,11 +57,36 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
         children: [
           Column(
             children: [
-              Container(
-                height: topMargin,
-                color: imgavg,
+              // Container(
+              //   height: topMargin,
+              //   color: imgavg,
+              // ),
+              ImageFiltered(
+                imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                child: Container(
+                  height: topMargin,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage('https://smartcdn.prod.postmedia.digital/nationalpost/wp-content/uploads/2021/06/Anthony-Rota-1-33.png?quality=90&strip=all&w=564&type=webp'),
+                      fit: BoxFit.fitWidth,
+                      alignment: Alignment.topCenter
+                    ),
+                  ),
+                ),
               ),
-              Image.network('https://smartcdn.prod.postmedia.digital/nationalpost/wp-content/uploads/2021/06/Anthony-Rota-1-33.png?quality=90&strip=all&w=564&type=webp'),
+              Container(
+                child: Image.network('https://smartcdn.prod.postmedia.digital/nationalpost/wp-content/uploads/2021/06/Anthony-Rota-1-33.png?quality=90&strip=all&w=564&type=webp'),
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: imgavg,
+                      blurRadius: 50,
+                      spreadRadius: 10,
+                      offset: Offset(0.0, -15.0)
+                    )
+                  ]
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
                 child: Text('Car crash in Beverly Hills', style: Theme.of(context).textTheme.headline2),
@@ -82,7 +109,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
               },
               onVerticalDragEnd: (v){
                 setState(() => dragStatus = DragStatus.endedUp);
-                if(-v.velocity.pixelsPerSecond.dy > 0 || bottomSheetHeight > 600) {
+                if(-v.velocity.pixelsPerSecond.dy > 0 || bottomSheetHeight > 250) {
                   animate(from: bottomSheetHeight, to: bottomSheetMaxHeight);
                 } else {
                   animate(from: bottomSheetHeight, to: 100);
@@ -120,7 +147,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
                         physics: NeverScrollableScrollPhysics(),
                         padding: EdgeInsets.only(left: 25, right: 25),
                         children: [
-                          Text('Bias', style: Theme.of(context).textTheme.subtitle1),
+                          Text('Political Leaning', style: Theme.of(context).textTheme.subtitle1.copyWith(fontWeight: FontWeight.w400)),
                           Stack(
                             alignment: Alignment.center,
                             children: [
@@ -160,7 +187,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
                             ],
                           ),
                           Container(height: 8),
-                          Text('Subjectivity', style: Theme.of(context).textTheme.subtitle1),
+                          Text('Subjectivity', style: Theme.of(context).textTheme.subtitle1.copyWith(fontWeight: FontWeight.w400)),
                           Stack(
                             alignment: Alignment.center,
                             children: [
@@ -200,7 +227,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
                             ],
                           ),
                           Container(height: 8),
-                          Text('Polarity', style: Theme.of(context).textTheme.subtitle1),
+                          Text('Polarity', style: Theme.of(context).textTheme.subtitle1.copyWith(fontWeight: FontWeight.w400)),
                           Stack(
                             alignment: Alignment.center,
                             children: [

@@ -10,16 +10,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'Gotham',
         textTheme: TextTheme(
           headline1: TextStyle(
+            fontFamily: 'Adobe Carlson Pro',
             fontSize: 40,
             fontWeight: FontWeight.w600,
             color: Colors.black,
           ),
           headline2: TextStyle(
-            fontSize: 32,
+            fontSize: 30,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ),
@@ -39,8 +41,8 @@ class MyApp extends StatelessWidget {
             color: Colors.black,
           ),
           bodyText2: TextStyle(
-            fontWeight: FontWeight.w200,
-            color: Colors.black,
+            fontWeight: FontWeight.w400,
+            color: Colors.black54,
           ),
         )
       ),
@@ -94,7 +96,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                   padding: const EdgeInsets.all(15.0),
                   child: Row(
                     children: [
-                      Text('NewsByte', style: Theme.of(context).textTheme.headline1),
+                      Text('Themis', style: Theme.of(context).textTheme.headline1),
                       Expanded(child: Container()),
                       GestureDetector(
                         onTap: () {
@@ -113,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(left: 15.0),
-                          child: Text("Trending", style: Theme.of(context).textTheme.headline2),
+                          child: Text("Trending", style: Theme.of(context).textTheme.headline2.copyWith(color: Color.fromRGBO(100, 100, 100, 1))),
                         ),
                         //Filters
                         Padding(
