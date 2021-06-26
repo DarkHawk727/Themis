@@ -49,11 +49,15 @@ def todaysHeadlines():
 
    for result in results:
        text = ""
-       print(result)
+       if results.index(result) > 2:
+           break
+
        if not result["content"] and not result["description"]:
            continue
+
        elif not result["content"]:
            text += result["description"]
+           
        elif not result["description"]:
            text += result["content"]
 
