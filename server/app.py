@@ -29,6 +29,9 @@ def do():
     blob = TextBlob(summary[0]["summary_text"])
     data = {
         "data": {
+            "headline": res.json()['title'] or '',
+            "image": res.json()['image_url'] or '',
+            "source": res.json()['source_id'] or '',
             "summary": summary[0]["summary_text"],
             "polarity": blob.sentiment[0],
             "subjectivity": blob.sentiment[1],

@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+
 class Data {
   static List<Function> listeners = [];
   static addListener(Function update) => listeners.add(update);
@@ -24,6 +28,15 @@ class Data {
     selectedTags.remove(tag);
     if(selected) selectedTags.add(tag);
     _notify();
+  }
+
+  static search(String query) {
+    return http.post(
+      Uri.parse('https://2f90bea7a622.ngrok.io/'),
+      body: jsonEncode(<String, String>{
+        'query': query,
+      }),
+    );
   }
 }
 
