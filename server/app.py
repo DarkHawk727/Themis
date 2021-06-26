@@ -4,6 +4,7 @@ from textblob import TextBlob
 import requests
 import json
 import urllib
+import textstat
 
 app = Flask(__name__)
 
@@ -14,7 +15,7 @@ def do():
     body = request.get_json()
     safe_query = body["query"].split(' ')
     safe_query = '+'.join(safe_query) 
-    res = requests.get(f'https://newsdata.io/api/1/news?apikey=pub_42213970ad6b67a6efb40d24a9038c93875&q={safe_query}')
+    res = requests.get(f'https://newsdata.io/api/1/news?apikey=pub_42213970ad6b67a6efb40d24a9038c93875&q={safe_query}&language=en')
 
     text = "" 
     if not res.json()["results"][0]["content"]:
@@ -35,6 +36,7 @@ def do():
             "summary": summary[0]["summary_text"],
             "polarity": blob.sentiment[0],
             "subjectivity": blob.sentiment[1],
+            "reading_level": textstat.flesch_reading_ease(summary[0]["summary_text"])
         }
     }
     return data
