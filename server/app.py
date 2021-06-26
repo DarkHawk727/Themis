@@ -41,6 +41,12 @@ def do():
     }
     return data
 
+@app.route('/today', methods=["GET"])
+def todaysHeadlines():
+   res = requests.get(f'https://newsdata.io/api/1/news?apikey=pub_42213970ad6b67a6efb40d24a9038c93875&category=health,business&language=en') 
+   return {
+       res.json()
+   }
 
 if __name__ == '__main__':
     app.run()
