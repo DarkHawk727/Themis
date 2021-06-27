@@ -22,6 +22,8 @@ Themis provides you with the latest news on current affairs with reduced bias an
 
 - **Flutter**: Our mobile app is made using Flutter which means that our mobile app is cross-platform. Flutter made making the mobile app easy and quick.
 
+- **Google Images**: We query google images to get images for articles which did not previously have images. This helped in maintaining accessibility and consistency which lead to great user experience.
+
 ## 🛑 Challenges we ran into
 - 
 ## ✅ Accomplishments that we're proud of
@@ -41,7 +43,7 @@ Themis provides you with the latest news on current affairs with reduced bias an
 - Making HTTP requests to our internal API.
 
 ## 🤔 What's next for Themis
-In the future, we would like to improve the user experience and work on increasing the performance of the model so it takes less time in summarising the articles. We may also add more metrics for the users to analyse our summary and gain more insights.Adding a way for us to fact check claims would aid in filtering out false claims. We would also like to add animations and illustrations to the app to improve the overall experience for our users.
+In the future, we would like to improve the user experience and work on increasing the performance of the model so it takes less time in summarising the articles. We may also add more metrics for the users to analyse our summary and gain more insights. Adding a way for us to fact check claims would aid in filtering out false claims. We would also like to add animations and illustrations to the app to improve the overall experience for our users.
 
 ## 🙇‍♂️ Aknowledgements
 We would like to thank TeenHacks, Google, HuggingFace, 
