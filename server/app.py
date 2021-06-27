@@ -6,13 +6,13 @@ import requests
 import json
 import urllib
 import textstat
-from sklearn.externals import joblib
+from joblib import load
 
 app = Flask(__name__)
 
 giresponse = google_images_download.googleimagesdownload() 
 
-clf = joblib.load("model.joblib")
+clf = load("model.joblib")
 
 def imageUrl(query):
     print(query)
