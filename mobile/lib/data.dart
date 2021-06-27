@@ -112,6 +112,7 @@ class News {
     this.subjectivity = json['subjectivity'] ?? 0.5;
     this.readingLevel = json['readingLevel'] ?? 50;
     this.articleUrl = json['article_url'] ?? '';
+    this.bias = json['political_leaning'] == 'left' ? 0 : 1;
   }
 
   getAvgColor() async {
