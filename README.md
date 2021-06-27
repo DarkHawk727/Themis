@@ -16,7 +16,7 @@ Themis provides you with the latest news on current affairs with reduced bias an
 
 - **BERT**: We used a BERT-based model from HuggingFace transformers. Our ml pipeline was based on PyTorch and the data used to train the model was [CNN / Daily Mail dataset](https://huggingface.co/datasets/cnn_dailymail) which consists of long articles making it the perfect dataset to use.
 
-- **SKLearn**: We used sklearn to train our own neural network which used TF-IDF to vectorise the input. We then exported the model to joblib so we could use it in the api.
+- **Sklearn**: We used sklearn to train our own neural network which used TF-IDF to vectorise the input. We then exported the model to joblib so we could use it in the api.
 
 - **TextBlob**: Textblob helped in calculating various other metrics like the sentiment of the summarised article, polarity, and subjectivity.
 
@@ -37,6 +37,8 @@ Themis provides you with the latest news on current affairs with reduced bias an
 - We learned to use sklearn to train a neural network for classifying text on the political spectrum.
 
 - Using HuggingFace transformer pipelines to summarise the article and remove a lot of unnecessary tokens.
+
+- Making HTTP requests to our internal API.
 
 ## 🤔 What's next for Themis
 In the future, we would like to improve the user experience and work on increasing the performance of the model so it takes less time in summarising the articles. We may also add more metrics for the users to analyse our summary and gain more insights.Adding a way for us to fact check claims would aid in filtering out false claims. We would also like to add animations and illustrations to the app to improve the overall experience for our users.
