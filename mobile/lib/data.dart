@@ -71,7 +71,6 @@ class Data {
 
   static loadData(response, bool home) {
     List<dynamic> summaries = jsonDecode(response.body)['articles'];
-    print(summaries.map((e) => e['headline']));
     if(summaries.isNotEmpty) {
       summaries.forEach((e) => addJsonToArticles(e, home));
       loadingState = LoadingState.found;
@@ -105,7 +104,10 @@ class News {
     if(this.image == '') this.image = 'https://smartcdn.prod.postmedia.digital/nationalpost/wp-content/uploads/2021/06/Anthony-Rota-1-33.png?quality=90&strip=all&w=564&type=webp';
     //this.avgColor = avgColor;
     this.sources = [json['source']] ?? [];
-    this.content = json['summary'] ?? '';
+    String _content = json['summary'].replaceAll(' .', '.') ?? '';
+    if(_content[0] == ' ')
+    _content = _content.substring(1);
+    this.content = _content;
     this.polarity = json['polarity'] ?? 0;
     this.subjectivity = json['subjectivity'] ?? 0.5;
     this.readingLevel = json['readingLevel'] ?? 50;
