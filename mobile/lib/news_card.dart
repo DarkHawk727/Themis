@@ -25,9 +25,7 @@ class _NewsCardState extends State<NewsCard> {
   isDark() {
     if(!this.widget.news.avgColor.containsKey('bottomThird')) return true;
     Color clr = this.widget.news.avgColor['bottomThird'];
-    print(clr.blue);
     double avg = (clr.blue + clr.red + clr.green).toDouble();
-    //print(avg);
     return avg < 50;
   }
   

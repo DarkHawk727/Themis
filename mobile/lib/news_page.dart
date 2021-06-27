@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'dart:ui';
 import 'data.dart';
 
@@ -81,6 +82,13 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
                   Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Text(this.widget.news.content, style: Theme.of(context).textTheme.bodyText1),
+                  ),
+                  MaterialButton(
+                    onPressed: () async {
+                      String _url = this.widget.news.articleUrl;
+                      await canLaunch(_url) ? await launch(_url) : throw 'Could not launch $_url';
+                    },
+                    child: Text('Read Full'),
                   ),
                   Container(height: 90)
                 ],
@@ -164,7 +172,6 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
                         ],
                       ),
                     ),
-                    
                   ],
                 ),
               ),

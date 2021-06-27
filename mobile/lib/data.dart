@@ -71,6 +71,7 @@ class Data {
 
   static loadData(response, bool home) {
     List<dynamic> summaries = jsonDecode(response.body)['articles'];
+    print(summaries.map((e) => e['headline']));
     if(summaries.isNotEmpty) {
       summaries.forEach((e) => addJsonToArticles(e, home));
       loadingState = LoadingState.found;
@@ -94,6 +95,7 @@ class News {
   double subjectivity = 0.5;
   double polarity = 0.5;
   int readingLevel = 50;
+  String articleUrl = '';
   Map<String, Color> avgColor = {};
   List<String> sources = [];
   
@@ -107,6 +109,7 @@ class News {
     this.polarity = json['polarity'] ?? 0;
     this.subjectivity = json['subjectivity'] ?? 0.5;
     this.readingLevel = json['readingLevel'] ?? 50;
+    this.articleUrl = json['article_url'] ?? '';
   }
 
   getAvgColor() async {

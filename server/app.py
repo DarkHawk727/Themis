@@ -48,7 +48,7 @@ def getData(results):
     summaries = []
     for result in results:
         text = ""
-        if len(summaries) < 3 and result["content"] and result['image_url'] and result['title'] not in [sum['headline'] for sum in summaries]:
+        if len(summaries) < 4 and result["content"] and result['image_url'] and result['title'] not in [sum['headline'] for sum in summaries]:
 
             text = result["content"]
 
@@ -56,7 +56,6 @@ def getData(results):
                 text = text[:1024]
 
             summary = summarizer(text)#, max_length=200, min_length=90, do_sample=False)
-            print(summary)
             blob = TextBlob(summary[0]["summary_text"])
             summaries.append({
                 "headline": result['title'] or '',
@@ -65,7 +64,8 @@ def getData(results):
                 "summary": summary[0]["summary_text"],
                 "polarity": blob.sentiment[0],
                 "subjectivity": blob.sentiment[1],
-                "reading_level": textstat.flesch_reading_ease(summary[0]["summary_text"]) 
+                "reading_level": textstat.flesch_reading_ease(summary[0]["summary_text"]),
+                "article_url": result['link']
             })
        
     return {
