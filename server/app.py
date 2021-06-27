@@ -84,7 +84,7 @@ def getData(results, limit):
 
             summary = summarizer(text)#, max_length=200, min_length=90, do_sample=False)
             blob = TextBlob(summary[0]["summary_text"])
-            print(clf.predict([summary[0]["summary_text"]])[0])
+            pol = requests.post("https://daratos.herokuapp.com/bias", data={"content": summary[0]["summary_text"]})
             summaries.append({
                 "headline": result['title'] or '',
                 "image": image or '',
@@ -94,7 +94,8 @@ def getData(results, limit):
                 "subjectivity": blob.sentiment[1],
                 "reading_level": textstat.flesch_reading_ease(summary[0]["summary_text"]),
                 "article_url": result['link'],
-                "political_leaning": int(clf.predict([summary[0]["summary_text"]])[0])
+                "political_leaning": pol.json()["prediction_category"]  # Untested
+                #"political_leaning": int(clf.predict([summary[0]["summary_text"]])[0])
             })
 
        
