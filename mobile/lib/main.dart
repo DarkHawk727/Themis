@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Gotham',
         textTheme: TextTheme(
           headline1: TextStyle(
-            fontFamily: 'Adobe Carlson Pro',
+            //fontFamily: 'Adobe Carlson Pro',
             fontSize: 40,
             fontWeight: FontWeight.w600,
             color: Colors.black,
@@ -123,7 +123,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                         ),
                         //Filters
                         Padding(
-                          padding: const EdgeInsets.only(top: 5, bottom: 8),
+                          padding: const EdgeInsets.only(top: 5, bottom: 12),
                           child: Container(
                             clipBehavior: Clip.none,
                             height: 22,
@@ -222,7 +222,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                         padding: EdgeInsets.zero,
                         onPressed: () {
                           FocusManager.instance.primaryFocus.unfocus();
-                          Data.articles = [];
+                          Data.loadingState = LoadingState.home;
                           controller.reverse();
                         },
                         child: Text('Cancel', style: TextStyle(color: Colors.blueAccent)),

@@ -14,8 +14,11 @@ class Data {
   static set loadingState(LoadingState newState) {
     _loadingState = newState;
     if(newState == LoadingState.loading) articles = [];
+    if(newState == LoadingState.home) articles = homePageArticles;
     _notify();
   }
+
+  static List<News> homePageArticles = [];
 
   static List<String> availableTags = 
     [
@@ -38,6 +41,7 @@ class Data {
     selectedTag = '';
     if(selected) selectedTag = tag;
     if(selected) search(tag);
+    if(selectedTag == '') loadingState = LoadingState.home;
     _notify();
   }
 
@@ -53,7 +57,7 @@ class Data {
       }),
     );
 
-    loadData(response);
+    loadData(response, false);
   }
   
   static getToday() async {
@@ -62,22 +66,23 @@ class Data {
       Uri.parse(_apiUrl + '/today'),
     );
 
-    loadData(response);
+    loadData(response, true);
   }
 
-  static loadData(response) {
+  static loadData(response, bool home) {
     List<dynamic> summaries = jsonDecode(response.body)['articles'];
     if(summaries.isNotEmpty) {
-      summaries.forEach((e) => addJsonToArticles(e));
+      summaries.forEach((e) => addJsonToArticles(e, home));
       loadingState = LoadingState.found;
     } else {
       loadingState = LoadingState.none;
     }
   }
 
-  static addJsonToArticles(data) async {
+  static addJsonToArticles(data, bool home) async {
     News newsArticle = News.fromJson(data);
     articles.add(newsArticle);
+    if(home) homePageArticles.add(newsArticle);
   }
 }
 
@@ -114,5 +119,6 @@ enum LoadingState {
   none,
   waiting,
   loading,
+  home,
   found
 }
