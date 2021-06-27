@@ -55,5 +55,10 @@ Themis provides you with the latest news on current affairs with reduced bias an
 ## 🤔 What's next for Themis
 In the future, we would like to improve the user experience and work on increasing the performance of the model so it takes less time in summarising the articles. We may also add more metrics for the users to analyse our summary and gain more insights. Adding a way for us to fact-check claims would aid in filtering out false claims. We would also like to add animations and illustrations to the app to improve the overall experience for our users.
 
+## Gallery
+![Themis1](https://user-images.githubusercontent.com/47152801/123549795-884fbe80-d738-11eb-977a-53bd759200d2.jpg)
+![Themis2](https://user-images.githubusercontent.com/47152801/123549797-8a198200-d738-11eb-9385-cb9eac975909.jpg)
+![Themis3](https://user-images.githubusercontent.com/47152801/123549798-8be34580-d738-11eb-90b1-1eb72943307b.jpg)
+
 ## 🙇‍♂️ Acknowledgements
-We would like to thank TeenHacks, Google, HuggingFace, 
+We would like to thank TeenHacks for the opportunity, flask, Sklearn, Google for BERT, Flutter, and Images, Newsdata.io for the news API, and all the authors of the flutter packages.
