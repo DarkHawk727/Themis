@@ -93,7 +93,7 @@ def getData(results, limit):
                 "subjectivity": blob.sentiment[1],
                 "reading_level": textstat.flesch_reading_ease(summary[0]["summary_text"]),
                 "article_url": result['link'],
-                "political_leaning": clf.predict(summary[0]["summary_text"])
+                "political_leaning": clf.predict([summary[0]["summary_text"]])
             })
 
        
