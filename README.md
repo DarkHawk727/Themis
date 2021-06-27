@@ -61,4 +61,4 @@ In the future, we would like to improve the user experience and work on increasi
 ![Themis3](https://user-images.githubusercontent.com/47152801/123549798-8be34580-d738-11eb-90b1-1eb72943307b.jpg)
 
 ## 🙇‍♂️ Acknowledgements
-We would like to thank TeenHacks for the opportunity, flask, Sklearn, Google for BERT, Flutter, and Images, Newsdata.io for the news API, and all the authors of the flutter packages.
+We would like to thank TeenHacks for the opportunity, Flask, Sklearn, HuggingFace for the Language Models, TextBlob for the other metrics, Google for BERT, Flutter, and Images, Newsdata.io for the news API, and all the authors of the flutter packages.
