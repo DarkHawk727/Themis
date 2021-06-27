@@ -67,6 +67,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
   @override
   void initState() {
     Data.addListener(update);
+    Data.getToday();
     controller = AnimationController(duration: const Duration(milliseconds: 180), vsync: this);
     animation = Tween<Offset>(begin: Offset(0.0, -0.13), end: Offset.zero).animate(CurvedAnimation(
       parent: controller,
@@ -79,7 +80,10 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
     super.initState();
   }
 
-  update() => {if(mounted) setState((){})};
+  update() {
+    if(mounted) 
+    setState((){});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -121,6 +125,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                         Padding(
                           padding: const EdgeInsets.only(top: 5, bottom: 8),
                           child: Container(
+                            clipBehavior: Clip.none,
                             height: 22,
                             child: ListView(
                               padding: EdgeInsets.only(left: 15.0),
@@ -138,6 +143,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                                   ]
                                 ),
                                 child: FilterChip(
+                                  showCheckmark: false,
                                   backgroundColor: Colors.white,
                                   padding: EdgeInsets.only(bottom: 9, left: 10, right: 10),
                                   selected: Data.isSelected(e),
@@ -158,11 +164,11 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                   child: PageView(
                     clipBehavior: Clip.none,
                     scrollDirection: Axis.horizontal,
-                    children: [
-                      NewsCard(),
-                      NewsCard(),
-                      NewsCard()
-                    ],
+                    children: 
+                      Data.articles.isNotEmpty ? Data.articles.map((e) => NewsCard(e)).toList() :
+                      Data.loadingState == LoadingState.loading ? [Center(child: CircularProgressIndicator())] :
+                      Data.loadingState == LoadingState.none ? [Center(child: Text('No Articles'))] :
+                      []
                   )
                 )
               ],
@@ -186,20 +192,29 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                           height: 30,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            color: Colors.grey
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black12,
+                                spreadRadius: 5,
+                                blurRadius: 50
+                              )
+                            ]
                           ),
                           child: TextField(
-                            style: Theme.of(context).textTheme.bodyText1.copyWith(fontSize: 16, color: Colors.white),
+                            style: Theme.of(context).textTheme.bodyText1.copyWith(fontSize: 16, color: Colors.black),
                             decoration: InputDecoration(
                               isDense: true,
                               contentPadding: EdgeInsets.only(top: 6),
                               border: InputBorder.none,
                               hintText: 'Search',
-                              //hintStyle: TextStyle(color: Colors.white)
+                              hintStyle: TextStyle(color: Colors.black)
                             ),
-                            onEditingComplete: () {
+                            onSubmitted: (query) {
                               FocusManager.instance.primaryFocus.unfocus();
+                              Data.search(query);
                             },
+                            onChanged: (_) => Data.articles = [],
                           )
                         )
                       ),
@@ -207,6 +222,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                         padding: EdgeInsets.zero,
                         onPressed: () {
                           FocusManager.instance.primaryFocus.unfocus();
+                          Data.articles = [];
                           controller.reverse();
                         },
                         child: Text('Cancel', style: TextStyle(color: Colors.blueAccent)),
