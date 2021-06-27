@@ -14,7 +14,7 @@ Themis provides you with the latest news on current affairs with reduced bias an
 
 - **Newsdata.io**: To get news from various sources we used the api provided by [Newsdata.io](https://newsdata.io/). Finding the right api was difficult due to the issues which came with the apis. Newsdata provided querying, pagination and language selection which were imperative for our app.
 
-- **BERT**: We used a BERT-based model from HuggingFace transformers. Our ml pipeline was based on PyTorch and the data used to train the model was [CNN / Daily Mail dataset](https://huggingface.co/datasets/cnn_dailymail) which consists of long articles making it the perfect dataset to use.
+- **BERT**: We used a BERT-based model from HuggingFace transformers. Our ML pipeline was based on PyTorch and the data used to train the model was [CNN / Daily Mail dataset](https://huggingface.co/datasets/cnn_dailymail) which consists of long articles making it the perfect dataset to use.
 
 - **Sklearn**: We used sklearn to train our own neural network which used TF-IDF to vectorise the input. We then exported the model to joblib so we could use it in the api.
 
@@ -35,6 +35,8 @@ Themis provides you with the latest news on current affairs with reduced bias an
 - Building a mobile app with a nice UI and comfortable UX along with creating a custom bottom sheet which was quite new for us.
 
 ## 📖 What we learned
+
+- Making advanced flutter apps that leverage multipl APIs
 
 - We learned to use sklearn to train a neural network for classifying text on the political spectrum.
 
