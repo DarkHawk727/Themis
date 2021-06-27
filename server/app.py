@@ -76,6 +76,8 @@ def getData(results, limit):
                     image = None
             else:
                 image = result['image_url']
+            
+            image = image.replace('http:', 'https:')
 
             if len(text) > 1024:
                 text = text[:1024]
