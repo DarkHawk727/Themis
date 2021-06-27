@@ -1,14 +1,35 @@
 import 'package:flutter/material.dart';
+import 'data.dart';
 import 'news_page.dart';
 
 class NewsCard extends StatefulWidget {
-  const NewsCard({ Key key }) : super(key: key);
+  const NewsCard(this.news, {Key key }) : super(key: key);
+  final News news;
 
   @override
   _NewsCardState createState() => _NewsCardState();
 }
 
 class _NewsCardState extends State<NewsCard> {
+  initState() {
+    getDarkStatus();
+    super.initState();
+  }
+
+  getDarkStatus() async {
+    await this.widget.news.getAvgColor();
+    if(mounted)
+    setState(() {});
+  }
+
+  isDark() {
+    if(!this.widget.news.avgColor.containsKey('bottomThird')) return true;
+    Color clr = this.widget.news.avgColor['bottomThird'];
+    print(clr.blue);
+    double avg = (clr.blue + clr.red + clr.green).toDouble();
+    //print(avg);
+    return avg < 50;
+  }
   
   @override
   Widget build(BuildContext context) {
@@ -17,13 +38,13 @@ class _NewsCardState extends State<NewsCard> {
       padding: const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 10.0),
       child: GestureDetector(
         onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (_) => NewsPage()));
+          Navigator.push(context, MaterialPageRoute(builder: (_) => NewsPage(this.widget.news)));
         },
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15.0),
             image: DecorationImage(
-              image: NetworkImage('https://smartcdn.prod.postmedia.digital/nationalpost/wp-content/uploads/2021/06/Anthony-Rota-1-33.png?quality=90&strip=all&w=564&type=webp'),
+              image: NetworkImage(this.widget.news.image),
               fit: BoxFit.cover
             ),
             boxShadow: [
@@ -41,7 +62,7 @@ class _NewsCardState extends State<NewsCard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(child: Container()),
-                Text('Car crash in Beverly Hills', style: Theme.of(context).textTheme.headline3) 
+                Text(this.widget.news.headline, style: Theme.of(context).textTheme.headline3.copyWith(color: isDark() ? Colors.white : Colors.black)) 
               ]
             ),
           ),
