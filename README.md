@@ -25,7 +25,15 @@ Themis provides you with the latest news on current affairs with reduced bias an
 - **Google Images**: We query google images to get images for articles which did not previously have images. This helped in maintaining accessibility and consistency which lead to great user experience.
 
 ## 🛑 Challenges we ran into
-- 
+
+- To improve user experience we had to add a feature to scrape Google Images in the case where the news API did not return an associated image.
+
+- We had to build and train our own Bias-Detection Model as there was no preexisting technology available.
+
+- Optimizing the API for a blazing fast user experience.
+
+- Finding the perfect balance of information to clutter.
+
 ## ✅ Accomplishments that we're proud of
 
 - We are proud of using NLP (sentiment analysis) to calculate the polarity and subjectivity of the summarised article.
@@ -36,7 +44,7 @@ Themis provides you with the latest news on current affairs with reduced bias an
 
 ## 📖 What we learned
 
-- Making advanced flutter apps that leverage multipl APIs
+- Making advanced flutter apps that leverage multipl APIs.
 
 - We learned to use sklearn to train a neural network for classifying text on the political spectrum.
 
