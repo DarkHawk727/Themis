@@ -16,7 +16,7 @@ app = Flask(__name__)
 
 giresponse = google_images_download.googleimagesdownload() 
 
-clf = load("model.joblib")
+clf = load("app/model.joblib")
 
 def imageUrl(query):
     print(query)
