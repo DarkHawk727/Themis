@@ -7,6 +7,10 @@ import json
 import urllib
 import textstat
 from joblib import load
+from dotenv import load_dotenv, dotenv_values
+import os
+
+load_dotenv()
 
 app = Flask(__name__)
 
@@ -25,7 +29,7 @@ def imageUrl(query):
 #summarizer = pipeline("summarization")
 
 API_URL = "https://api-inference.huggingface.co/models/sshleifer/distilbart-cnn-6-6"
-headers = {"Authorization": "Bearer api_XEfaWygPIRetpbUZoSEUpXGOlDKuqZOalt"}
+headers = {"Authorization": "Bearer " + os.environ["HUGGINGFACE_API_KEY"]}
 
 def query(payload):
 	data = json.dumps(payload)
@@ -48,13 +52,13 @@ def do():
     body = request.get_json()
     safe_query = body["query"].split(' ')
     safe_query = '+'.join(safe_query) 
-    res = requests.get(f'https://newsdata.io/api/1/news?apikey=pub_42213970ad6b67a6efb40d24a9038c93875&q={safe_query}&language=en')
+    res = requests.get(f'https://newsdata.io/api/1/news?apikey={os.environ["NEWS_API_KEY"]}&q={safe_query}&language=en')
     results = res.json()["results"]
     return getData(results, 3)
 
 @app.route('/today', methods=["GET"])
 def todaysHeadlines():
-   res = requests.get(f'https://newsdata.io/api/1/news?apikey=pub_42213970ad6b67a6efb40d24a9038c93875&language=en&q=politics')
+   res = requests.get(f'https://newsdata.io/api/1/news?apikey={os.environ["NEWS_API_KEY"]}&language=en&q=politics')
    #res2 = requests.get(f'https://newsdata.io/api/1/news?apikey=pub_42213970ad6b67a6efb40d24a9038c93875&language=en&q=politics&page=2')
    results = res.json()["results"]
    #results.extend(res2.json()['results'])
@@ -84,7 +88,6 @@ def getData(results, limit):
 
             summary = summarizer(text)#, max_length=200, min_length=90, do_sample=False)
             blob = TextBlob(summary[0]["summary_text"])
-            pol = requests.post("https://daratos.herokuapp.com/bias", data={"content": summary[0]["summary_text"]})
             summaries.append({
                 "headline": result['title'] or '',
                 "image": image or '',
@@ -94,8 +97,7 @@ def getData(results, limit):
                 "subjectivity": blob.sentiment[1],
                 "reading_level": textstat.flesch_reading_ease(summary[0]["summary_text"]),
                 "article_url": result['link'],
-                "political_leaning": pol.json()["prediction_category"]  # Untested
-                #"political_leaning": int(clf.predict([summary[0]["summary_text"]])[0])
+                "political_leaning": int(clf.predict([summary[0]["summary_text"]])[0])
             })
 
        
