@@ -89,7 +89,7 @@ def getData(results, limit):
 
             summary = summarizer(text)#, max_length=200, min_length=90, do_sample=False)
             print(summary)
-            time.sleep(5)
+            time.sleep(10)
             blob = TextBlob(summary[0]["summary_text"])
             summaries.append({
                 "headline": result['title'] or '',
