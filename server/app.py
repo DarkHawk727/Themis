@@ -16,7 +16,7 @@ app = Flask(__name__)
 
 giresponse = google_images_download.googleimagesdownload() 
 
-clf = load("app/model.joblib")
+# clf = load("app/model.joblib")
 
 def imageUrl(query):
     print(query)
@@ -97,7 +97,7 @@ def getData(results, limit):
                 "subjectivity": blob.sentiment[1],
                 "reading_level": textstat.flesch_reading_ease(summary[0]["summary_text"]),
                 "article_url": result['link'],
-                "political_leaning": int(clf.predict([summary[0]["summary_text"]])[0])
+                "political_leaning": 1 # int(clf.predict([summary[0]["summary_text"]])[0])
             })
 
        
