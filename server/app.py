@@ -88,9 +88,11 @@ def getData(results, limit):
                 text = text[:1024]
 
             summary = summarizer(text)#, max_length=200, min_length=90, do_sample=False)
-            print(summary)
-            time.sleep(10)
-            blob = TextBlob(summary[0]["summary_text"])
+            try:
+                blob = TextBlob(summary[0]["summary_text"])
+            except KeyError:
+                abort(500)
+                
             summaries.append({
                 "headline": result['title'] or '',
                 "image": image or '',
