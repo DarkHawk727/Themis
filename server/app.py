@@ -90,7 +90,8 @@ def getData(results, limit):
             
             try:
                 blob = TextBlob(summary[0]["summary_text"])
-            except KeyError:
+            except KeyError as e:
+                print(e)
                 abort(500)
 
             summaries.append({
