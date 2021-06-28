@@ -1,10 +1,10 @@
 # importing google_images_download module
 #pip3 install git+https://github.com/con266667/google-images-download.git  
 from google_images_download import google_images_download 
-  
+ 
 # creating object
 giresponse = google_images_download.googleimagesdownload() 
-  
+
 def imageUrl(query):
     arguments = {"keywords": query,
                  "limit":1,
