@@ -46,6 +46,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     double topMargin = MediaQuery.of(context).padding.top;
     return Scaffold(
       body: Stack(
@@ -103,7 +104,7 @@ class _NewsPageState extends State<NewsPage> with SingleTickerProviderStateMixin
               },
               onVerticalDragUpdate: (v){
                 if(dragStatus == DragStatus.started)
-                setState(() => bottomSheetHeight = 870 - v.globalPosition.dy);
+                setState(() => bottomSheetHeight = height - v.globalPosition.dy);
               },
               onVerticalDragEnd: (v){
                 setState(() => dragStatus = DragStatus.endedUp);

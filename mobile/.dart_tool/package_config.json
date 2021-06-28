@@ -104,6 +104,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "loading_indicator",
+      "rootUri": "file:///Users/connorwilson/flutter/.pub-cache/hosted/pub.dartlang.org/loading_indicator-2.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "matcher",
       "rootUri": "file:///Users/connorwilson/flutter/.pub-cache/hosted/pub.dartlang.org/matcher-0.12.10",
       "packageUri": "lib/",
@@ -242,7 +248,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-06-28T19:34:04.622594Z",
+  "generated": "2021-06-28T19:50:48.819736Z",
   "generator": "pub",
   "generatorVersion": "2.12.2"
 }

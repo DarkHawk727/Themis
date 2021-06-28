@@ -81,6 +81,7 @@ class Data {
       }
     } catch (error) {
       print("INTERNAL SEVER ERROR");
+      loadingState = LoadingState.none;
     }
   }
 
@@ -117,10 +118,9 @@ class News {
     this.subjectivity = json['subjectivity'] ?? 0.5;
     this.readingLevel = json['readingLevel'] ?? 50;
     this.articleUrl = json['article_url'] ?? '';
-    this.bias = ((((1 - json['political_leaning'] - 0.5) * 2) * json['political_leaning_proba']) + 1) / 2;
-    this.bias = pow(bias, 1.2);
-    // print(1 - json['political_leaning']);
-    // print(this.bias);
+    // this.bias = ((((1 - json['political_leaning'] - 0.5) * 2) * json['political_leaning_proba']) + 1) / 2;
+    // this.bias = pow(bias, 1.2);
+    this.bias = 1.0;
   }
 
   getAvgColor() async {
