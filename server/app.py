@@ -63,7 +63,6 @@ def todaysHeadlines():
    #res2 = requests.get(f'https://newsdata.io/api/1/news?apikey=pub_42213970ad6b67a6efb40d24a9038c93875&language=en&q=politics&page=2')
    results = res.json()["results"]
    #results.extend(res2.json()['results'])
-   print(results)
    return getData(results, 3)
     
 def getData(results, limit):
@@ -88,11 +87,12 @@ def getData(results, limit):
                 text = text[:1024]
 
             summary = summarizer(text)#, max_length=200, min_length=90, do_sample=False)
+            
             try:
                 blob = TextBlob(summary[0]["summary_text"])
             except KeyError:
                 abort(500)
-                
+
             summaries.append({
                 "headline": result['title'] or '',
                 "image": image or '',
