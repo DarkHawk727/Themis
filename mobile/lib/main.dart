@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 import 'data.dart';
 import 'news_card.dart';
 
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
           headline1: TextStyle(
             //fontFamily: 'Adobe Carlson Pro',
             fontSize: 40,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w400,
             color: Colors.black,
           ),
           headline2: TextStyle(
@@ -166,7 +167,10 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                     scrollDirection: Axis.horizontal,
                     children: 
                       Data.articles.isNotEmpty ? Data.articles.map((e) => NewsCard(e)).toList() :
-                      Data.loadingState == LoadingState.loading ? [Center(child: CircularProgressIndicator())] :
+                      Data.loadingState == LoadingState.loading ? [Center(child: Padding(
+                        padding: const EdgeInsets.all(130.0),
+                        child: LoadingIndicator(indicatorType: Indicator.cubeTransition, color: Colors.black,),
+                      ))] :
                       Data.loadingState == LoadingState.none ? [Center(child: Text('No Articles'))] :
                       []
                   )

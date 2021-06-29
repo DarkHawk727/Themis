@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'dart:math';
 import 'average_color.dart';
 
 class Data {
-  static String _apiUrl = 'http://127.0.0.1:5000';
+  static String _apiUrl = 'http://13.233.51.226';
   static List<Function> listeners = [];
   static addListener(Function update) => listeners.add(update);
   static _notify() => listeners.forEach((e) => e());
@@ -70,11 +71,24 @@ class Data {
   }
 
   static loadData(response, bool home) {
+<<<<<<< HEAD
     List<dynamic> summaries = jsonDecode(response.body)['articles'];
     if(summaries.isNotEmpty) {
       summaries.forEach((e) => addJsonToArticles(e, home));
       loadingState = LoadingState.found;
     } else {
+=======
+    try {
+      List<dynamic> summaries = jsonDecode(response.body)['articles'];
+      if(summaries.isNotEmpty) {
+        summaries.forEach((e) => addJsonToArticles(e, home));
+        loadingState = LoadingState.found;
+      } else {
+        loadingState = LoadingState.none;
+      }
+    } catch (error) {
+      print("INTERNAL SEVER ERROR");
+>>>>>>> efecbc2be9ab0865ab6106049c2b35df05f0f937
       loadingState = LoadingState.none;
     }
   }
@@ -90,7 +104,11 @@ class News {
   String headline = '';
   String content = '';
   String image = '';
+<<<<<<< HEAD
   double bias = 0.5;
+=======
+  double bias = 0;
+>>>>>>> efecbc2be9ab0865ab6106049c2b35df05f0f937
   double subjectivity = 0.5;
   double polarity = 0.5;
   int readingLevel = 50;
@@ -112,7 +130,9 @@ class News {
     this.subjectivity = json['subjectivity'] ?? 0.5;
     this.readingLevel = json['readingLevel'] ?? 50;
     this.articleUrl = json['article_url'] ?? '';
-    this.bias = json['political_leaning'] == 'left' ? 0 : 1;
+    // this.bias = ((((1 - json['political_leaning'] - 0.5) * 2) * json['political_leaning_proba']) + 1) / 2;
+    // this.bias = pow(bias, 1.2);
+    this.bias = 1.0;
   }
 
   getAvgColor() async {
