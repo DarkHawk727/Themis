@@ -104,6 +104,7 @@ def getData(results, limit):
                 })
             except:
                 print('ERROR')
+                abort(500)
 
        
     return {
