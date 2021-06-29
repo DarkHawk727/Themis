@@ -62,12 +62,13 @@ class Data {
   }
   
   static getToday() async {
-    loadingState = LoadingState.loading;
-     http.Response response = await http.get(
-      Uri.parse(_apiUrl + '/today'),
-    );
+    // loadingState = LoadingState.loading;
+    //  http.Response response = await http.get(
+    //   Uri.parse(_apiUrl + '/today'),
+    // );
 
-    loadData(response, true);
+    // loadData(response, true);
+    search('latest');
   }
 
   static loadData(response, bool home) {
@@ -80,6 +81,7 @@ class Data {
         loadingState = LoadingState.none;
       }
     } catch (error) {
+      print(error);
       print("INTERNAL SEVER ERROR");
       loadingState = LoadingState.none;
     }
