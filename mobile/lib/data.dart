@@ -72,6 +72,13 @@ class Data {
   }
 
   static loadData(response, bool home) {
+<<<<<<< HEAD
+    List<dynamic> summaries = jsonDecode(response.body)['articles'];
+    if(summaries.isNotEmpty) {
+      summaries.forEach((e) => addJsonToArticles(e, home));
+      loadingState = LoadingState.found;
+    } else {
+=======
     try {
       List<dynamic> summaries = jsonDecode(response.body)['articles'];
       if(summaries.isNotEmpty) {
@@ -83,6 +90,7 @@ class Data {
     } catch (error) {
       print(error);
       print("INTERNAL SEVER ERROR");
+>>>>>>> efecbc2be9ab0865ab6106049c2b35df05f0f937
       loadingState = LoadingState.none;
     }
   }
@@ -98,7 +106,11 @@ class News {
   String headline = '';
   String content = '';
   String image = '';
+<<<<<<< HEAD
+  double bias = 0.5;
+=======
   double bias = 0;
+>>>>>>> efecbc2be9ab0865ab6106049c2b35df05f0f937
   double subjectivity = 0.5;
   double polarity = 0.5;
   int readingLevel = 50;
